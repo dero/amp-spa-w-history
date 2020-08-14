@@ -32,44 +32,46 @@
       color: blue;
       text-decoration: underline;
     }
-    amp-iframe {
+    amp-iframe, iframe {
       margin-top: 2000px;
     }
   </style>
   
   <meta
     name="amp-script-src"
-    content="sha384-WSF-iOpFu6IT_kCZ4PDjK2DhxMEpb3qNzzVNDbm7ELuggOUnXblfcZXISfMubTD1"
+    content="sha384-jgUAHmUtpBaPLkLtDNc5WRhC382uZ2XyY-58IFiCW7shl2lbpVn3cUV-kIlz6Pyr"
   />
 </head>
 
 <body>
-  <amp-script layout="fixed" width="600" height="800" script="navigate-to-subpage">
-    <div>
+  <amp-script layout="fixed" width="600" height="800" script="navigate-to-subpage">    
+    <div id="page">
       <strong>This is original page!</strong>
       <span id="navigate">Navigate to subpage</span>
-      <amp-iframe
-        layout="responsive"
-        width="500"
-        height="100"
-        sandbox="allow-scripts allow-same-origin"
-        src="https://boring-bohr-f491bc.netlify.app/redirect">
-      </amp-iframe>
     </div>
+    <amp-iframe
+      layout="responsive"
+      width="500"
+      height="100"
+      sandbox="allow-scripts allow-same-origin"
+      src="https://boring-bohr-f491bc.netlify.app/redirect">      
+    </amp-iframe>
   </amp-script>
   
   <!-- Add [target="amp-script"] to the <script> element. -->
   <script id="navigate-to-subpage" type="text/plain" target="amp-script">
     const link = document.getElementById('navigate');
-    const page = document.querySelector('div');
+    const page = document.getElementById('page');
+    let currentUrl = '';
 
     link.addEventListener('click', () => {
       page.innerHTML = '<strong>This is a subpage</strong>';
     } );
 
-    window.addEventListener('hashchange', () => {
-      page.innerHTML = '<strong>This is original page!</strong>';
-    } );    
+    window.addEventListener('popstate', ( e ) => {            
+      const currenturl = window.localStorage.getItem( 'currenturl' );
+      page.innerHTML = window.localStorage.getItem( currenturl );
+    } );
   </script>
 </body>
 </html>

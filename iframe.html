@@ -1,8 +1,19 @@
 <!doctype html>
-<p>Iframe contents</p>
+<p>Iframe page</p>
 <script>
-    var link = window.parent.document.getElementById('navigate');
-    link.addEventListener( 'click', ()  => {
-        window.parent.history.pushState( {}, 'New Window', '/new-address' );
+    const p = window.parent;    
+    const link = p.document.getElementById('navigate');    
+    const page = p.document.getElementById('page');
+
+    p.history.pushState( {}, 'Original Window', '/' );    
+
+    localStorage.setItem( 'currenturl', p.location.href );    
+    localStorage.setItem( p.location.href, page.innerHTML );    
+
+    link.addEventListener( 'click', ()  => {        
+        p.history.pushState( {}, 'New Window', '/new-address' );
+
+        localStorage.setItem( 'currenturl', p.location.href );
+        localStorage.setItem( p.location.href, page.innerHTML );
     } );
 </script>
