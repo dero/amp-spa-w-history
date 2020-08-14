@@ -1,5 +1,8 @@
 <!doctype html>
 <p>Iframe contents</p>
 <script>
-    window.parent.history.pushState( {}, 'New Window', '/new-address' );
+    var link = window.parent.document.getElementById('navigate');
+    link.addEventListener( 'click', ()  => {
+        window.parent.history.pushState( {}, 'New Window', '/new-address' );
+    } );
 </script>
