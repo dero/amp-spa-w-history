@@ -21,6 +21,7 @@
     }
     html, body {
       width: 100%;
+      min-height: 100%;
     }    
     div {
       width: 600px;
@@ -30,24 +31,22 @@
       color: blue;
       text-decoration: underline;
     }
+    amp-iframe {
+      margin-top: 2000px;
+    }
   </style>
   
   <meta
     name="amp-script-src"
-    content="sha384--yqNtHw2q8t0oV3944trPXP4m5MW5EFXA3QkO3caTGHbudKxajluYoUU-P-cPWkg"
+    content="sha384-WSF-iOpFu6IT_kCZ4PDjK2DhxMEpb3qNzzVNDbm7ELuggOUnXblfcZXISfMubTD1"
   />
 </head>
 
 <body>
   <amp-script layout="container" script="navigate-to-subpage">
     <div>
-      <h1>Hello AMPHTML World!</h1>
-      <span id="navigate">Navigate to another page with history</span>
-
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer molestie semper risus, ac ullamcorper purus fermentum a. Nulla facilisi. Mauris a malesuada risus. Donec non maximus neque, non luctus orci. Aenean mollis, ex at bibendum lacinia, erat est tempus enim, sed blandit orci dolor quis erat. Nullam fringilla efficitur erat vel dapibus. Quisque tempor sodales pharetra. Pellentesque at molestie ante, eu finibus erat. Cras id quam vitae nibh ullamcorper convallis. Interdum et malesuada fames ac ante ipsum primis in faucibus. Sed eros tortor, egestas ut lorem id, commodo blandit nunc. Nulla id luctus enim, eu euismod enim. Vivamus nec ligula ac risus malesuada ullamcorper et et nibh. Suspendisse eget faucibus ligula, vel ornare erat. Proin maximus diam quis erat fringilla pulvinar. Nam mattis posuere venenatis.</p>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer molestie semper risus, ac ullamcorper purus fermentum a. Nulla facilisi. Mauris a malesuada risus. Donec non maximus neque, non luctus orci. Aenean mollis, ex at bibendum lacinia, erat est tempus enim, sed blandit orci dolor quis erat. Nullam fringilla efficitur erat vel dapibus. Quisque tempor sodales pharetra. Pellentesque at molestie ante, eu finibus erat. Cras id quam vitae nibh ullamcorper convallis. Interdum et malesuada fames ac ante ipsum primis in faucibus. Sed eros tortor, egestas ut lorem id, commodo blandit nunc. Nulla id luctus enim, eu euismod enim. Vivamus nec ligula ac risus malesuada ullamcorper et et nibh. Suspendisse eget faucibus ligula, vel ornare erat. Proin maximus diam quis erat fringilla pulvinar. Nam mattis posuere venenatis.</p>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer molestie semper risus, ac ullamcorper purus fermentum a. Nulla facilisi. Mauris a malesuada risus. Donec non maximus neque, non luctus orci. Aenean mollis, ex at bibendum lacinia, erat est tempus enim, sed blandit orci dolor quis erat. Nullam fringilla efficitur erat vel dapibus. Quisque tempor sodales pharetra. Pellentesque at molestie ante, eu finibus erat. Cras id quam vitae nibh ullamcorper convallis. Interdum et malesuada fames ac ante ipsum primis in faucibus. Sed eros tortor, egestas ut lorem id, commodo blandit nunc. Nulla id luctus enim, eu euismod enim. Vivamus nec ligula ac risus malesuada ullamcorper et et nibh. Suspendisse eget faucibus ligula, vel ornare erat. Proin maximus diam quis erat fringilla pulvinar. Nam mattis posuere venenatis.</p>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer molestie semper risus, ac ullamcorper purus fermentum a. Nulla facilisi. Mauris a malesuada risus. Donec non maximus neque, non luctus orci. Aenean mollis, ex at bibendum lacinia, erat est tempus enim, sed blandit orci dolor quis erat. Nullam fringilla efficitur erat vel dapibus. Quisque tempor sodales pharetra. Pellentesque at molestie ante, eu finibus erat. Cras id quam vitae nibh ullamcorper convallis. Interdum et malesuada fames ac ante ipsum primis in faucibus. Sed eros tortor, egestas ut lorem id, commodo blandit nunc. Nulla id luctus enim, eu euismod enim. Vivamus nec ligula ac risus malesuada ullamcorper et et nibh. Suspendisse eget faucibus ligula, vel ornare erat. Proin maximus diam quis erat fringilla pulvinar. Nam mattis posuere venenatis.</p>
+      <strong>This is original page!</strong>
+      <span id="navigate">Navigate to subpage</span>
       <amp-iframe
         layout="responsive"
         width="500"
@@ -66,6 +65,10 @@
     link.addEventListener('click', () => {
       page.innerHTML = '<strong>This is a subpage</strong>';
     } );
+
+    window.addEventListener('hashchange', () => {
+      page.innerHTML = '<strong>This is original page!</strong>';
+    } );    
   </script>
 </body>
 </html>
